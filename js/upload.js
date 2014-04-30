@@ -75,7 +75,6 @@ function startUploading() {
 	var oXHR = new XMLHttpRequest();
 	oXHR.addEventListener('load', uploadFinish, false);
 	oXHR.addEventListener('error', uploadError, false);
-	oXHR.addEventListener('abort', uploadAbort, false);
 	oXHR.open('POST', 'upload.php');
 	oXHR.send(vFD);
 	 
@@ -141,3 +140,8 @@ function uploadFinish(e) { // upload successfully finished
 
 	clearInterval(oTimer);
 }
+	 
+function uploadError(e) { // upload error
+	document.getElementById('error2').style.display = 'block';
+	clearInterval(oTimer);
+} 
