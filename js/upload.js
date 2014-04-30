@@ -26,33 +26,15 @@ function bytesToSize(bytes) {
 };
  
 function filepicked() {
-	// hide different warnings
-	document.getElementById('filesuccess').style.display = 'none';
-	document.getElementById('error').style.display = 'none';
-
-
-	// get selected file element
     var oFile = document.getElementById('img_file').files[0];
-
-    // filter for image files
-    var rFilter = /^(image\/bmp|image\/gif|image\/jpeg|image\/png|image\/tiff)$/i;
-    if (! rFilter.test(oFile.type)) {
-        document.getElementById('error').style.display = 'block';
-        return;
-    }
-	
 	var oImage = document.getElementById('imgPreview');
 
-	// prepare HTML5 FileReader
+	//HTML5 FileReader
 	var oReader = new FileReader();
 	oReader.onload = function(e){
-
-		// e.target.result contains the DataURL which we will use as a source of the image
 		oImage.src = e.target.result;
 
 		oImage.onload = function () { // binding onload event
-
-			// we are going to display some custom image information here
 			sResultFileSize = bytesToSize(oFile.size);
 			document.getElementById('fileInformation').style.display = 'block';
 			document.getElementById('filename').innerHTML = 'Name: ' + oFile.name;
@@ -61,87 +43,26 @@ function filepicked() {
 			document.getElementById('filedimension').innerHTML = 'Dimension: ' + oImage.naturalWidth + ' x ' + oImage.naturalHeight;
 		};
 	};
-
-	// read selected file as DataURL
 	oReader.readAsDataURL(oFile);
 }
 
 function startUploading() {
-	// cleanup all temp states
 	iPreviousBytesLoaded = 0;
-	document.getElementById('filesuccess').style.display = 'none';
 	document.getElementById('error').style.display = 'none';
-
-
-	// get form data for POSTing
+	
 	var vFD = new FormData(document.getElementById('uploadForm'));
-	 
-	// create XMLHttpRequest object, adding few event listeners, and POSTing our data
 	var oXHR = new XMLHttpRequest();
-	oXHR.addEventListener('load', uploadFinish, false);
 	oXHR.addEventListener('error', uploadError, false);
 	oXHR.open('POST', 'upload.php');
 	oXHR.send(vFD);
-	 
-	// set inner timer
-	oTimer = setInterval(doInnerUpdates, 300);
-}
- 
-function doInnerUpdates() { 
-	// we will use this function to display upload speed
-	var iCB = iBytesUploaded;
-	var iDiff = iCB - iPreviousBytesLoaded;
-	 
-	// if nothing new loaded - exit
-	if (iDiff == 0)
-		return;
-		 
-	iPreviousBytesLoaded = iCB;
-	iDiff = iDiff * 2;
-	var iBytesRem = iBytesTotal - iPreviousBytesLoaded;
-	var secondsRemaining = iBytesRem / iDiff;
-	 
-	// update speed info
-	var iSpeed = iDiff.toString() + 'B/s';
-	if (iDiff > 1024 * 1024) {
-		iSpeed = (Math.round(iDiff * 100/(1024*1024))/100).toString() + 'MB/s';
-	} else if (iDiff > 1024) {
-		iSpeed =  (Math.round(iDiff * 100/1024)/100).toString() + 'KB/s';
-	}
-	 
-	document.getElementById('speed').innerHTML = iSpeed;
-	document.getElementById('remaining').innerHTML = '| ' + secondsToTime(secondsRemaining);
 }
 	 
-function uploadProgress(e) { // upload process in progress
-	if (e.lengthComputable) {
-		iBytesUploaded = e.loaded;
-		iBytesTotal = e.total;
-		var iPercentComplete = Math.round(e.loaded * 100 / e.total);
-		var iBytesTransfered = bytesToSize(iBytesUploaded);
-		 
-		document.getElementById('progress_percent').innerHTML = iPercentComplete.toString() + '%';
-		document.getElementById('progress').style.width = (iPercentComplete * 4).toString() + 'px';
-		document.getElementById('b_transfered').innerHTML = iBytesTransfered;
-		if (iPercentComplete == 100) {
-			var oUploadResponse = document.getElementById('response');
-			oUploadResponse.innerHTML = '<h1>Upload processing</h1>';
-			oUploadResponse.style.display = 'block';
-		}
-	} else {
-		document.getElementById('progress').innerHTML = 'unable to compute';
-	}
-}
-	 
-function uploadFinish(e) { // upload successfully finished
-	var oUploadResponse = document.getElementById('response');
+function uploadFinish(e) { // upload successful
+	var oUploadResponse = document.getElementById('filesuccess');
 	oUploadResponse.innerHTML = e.target.responseText;
 	oUploadResponse.style.display = 'block';
 	 
-	document.getElementById('progress_percent').innerHTML = '100%';
-	document.getElementById('progress').style.width = '400px';
 	document.getElementById('filesize').innerHTML = sResultFileSize;
-	document.getElementById('remaining').innerHTML = '| 00:00:00';
 
 	clearInterval(oTimer);
 }
