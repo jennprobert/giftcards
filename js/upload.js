@@ -1,8 +1,5 @@
 ﻿//variables
-var iBytesUploaded = 0;
-var iBytesTotal = 0;
 var iPreviousBytesLoaded = 0;
-var iMaxFilesize = 1048576; // 1MB
 var oTimer = 0;
 var sResultFileSize = '';
  
