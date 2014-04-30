@@ -30,7 +30,22 @@ function filepicked() {
 	document.getElementById('filesuccess').style.display = 'none';
 	document.getElementById('error').style.display = 'none';
 
-	var oFile = document.getElementById('img_file').files[0];
+	// get selected file element
+    var oFile = document.getElementById('img_file').files[0];
+
+    // filter for image files
+    var rFilter = /^(image\/bmp|image\/gif|image\/jpeg|image\/png|image\/tiff)$/i;
+    if (! rFilter.test(oFile.type)) {
+        document.getElementById('error').style.display = 'block';
+        return;
+    }
+
+    // little test for filesize
+    if (oFile.size > iMaxFilesize) {
+        document.getElementById('warnsize').style.display = 'block';
+        return;
+    }
+
 	var oImage = document.getElementById('preview');
 
 		// prepare HTML5 FileReader
