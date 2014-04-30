@@ -40,14 +40,12 @@ function filepicked() {
         document.getElementById('error').style.display = 'block';
         return;
     }
-
-    
-
+	
 	var oImage = document.getElementById('imgPreview');
 
-		// prepare HTML5 FileReader
-		var oReader = new FileReader();
-		oReader.onload = function(e){
+	// prepare HTML5 FileReader
+	var oReader = new FileReader();
+	oReader.onload = function(e){
 
 		// e.target.result contains the DataURL which we will use as a source of the image
 		oImage.src = e.target.result;
@@ -60,7 +58,7 @@ function filepicked() {
 			document.getElementById('filename').innerHTML = 'Name: ' + oFile.name;
 			document.getElementById('filesize').innerHTML = 'Size: ' + sResultFileSize;
 			document.getElementById('filetype').innerHTML = 'Type: ' + oFile.type;
-			document.getElementById('filedimensions').innerHTML = 'Dimension: ' + oImage.naturalWidth + ' x ' + oImage.naturalHeight;
+			document.getElementById('filedimension').innerHTML = 'Dimension: ' + oImage.naturalWidth + ' x ' + oImage.naturalHeight;
 		};
 	};
 
