@@ -141,13 +141,3 @@ function uploadFinish(e) { // upload successfully finished
 
 	clearInterval(oTimer);
 }
-	 
-function uploadError(e) { // upload error
-	document.getElementById('error2').style.display = 'block';
-	clearInterval(oTimer);
-} 
-	 
-function uploadAbort(e) { // upload abort
-	document.getElementById('abort').style.display = 'block';
-	clearInterval(oTimer);
-}	
