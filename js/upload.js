@@ -29,6 +29,7 @@ function filepicked() {
 	// hide different warnings
 	document.getElementById('filesuccess').style.display = 'none';
 	document.getElementById('error').style.display = 'none';
+	document.getElementById('warnsize').style.display = 'none';
 
 	// get selected file element
     var oFile = document.getElementById('img_file').files[0];
@@ -76,6 +77,7 @@ function startUploading() {
 	iPreviousBytesLoaded = 0;
 	document.getElementById('filesuccess').style.display = 'none';
 	document.getElementById('error').style.display = 'none';
+	document.getElementById('warnsize').style.display = 'none';
 
 	// get form data for POSTing
 	var vFD = new FormData(document.getElementById('uploadForm'));
