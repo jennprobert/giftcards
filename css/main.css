@@ -36,7 +36,7 @@ header {
 	text-align:center;
 	margin:0 auto;
 }
-button{
+.btnUpload{
 	padding:3px;
 	margin:10px 0;
 	color:#fff;
