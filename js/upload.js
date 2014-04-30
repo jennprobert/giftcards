@@ -43,7 +43,7 @@ function filepicked() {
 
     
 
-	var oImage = document.getElementById('preview');
+	var oImage = document.getElementById('imgPreview');
 
 		// prepare HTML5 FileReader
 		var oReader = new FileReader();
