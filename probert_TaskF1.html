@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Jennifer Probert Task F1</title>
+		<link href="css/main.css" rel="stylesheet" type="text/css"/>
+		<script src="js/upload.js"></script>
+		<!--[if gte IE 9]>
+		  <style type="text/css">
+		    .gradient {
+			  filter: none;
+		    }
+		  </style>
+		<![endif]-->
+	</head>
+	<body>
+		<header class="shadowed">
+			<h1>Upload Your Photo</h1>
+		</header>
+		<!--main content container-->
+		<section class="container shadowed">
+			<!--upload the form here-->
+			<div id="formContainer">
+				<form id="uploadForm" class="floatLeft" method="POST" enctype="multipart/form-data">
+					<p>Upload and view your photos!</p>
+						<p>Please select a photo and click the Upload button.</p>
+					<div>
+					    <div><label for="img_file">Please select image file</label></div>
+					    <div><input class="fileField block" type="file" name="img_file" id="img_file" onchange="filepicked();" /></div>
+					</div>
+					<div>
+					    <input class="blueGradient shadowed block" type="button" value="Upload" onclick="startUploading()" />
+					</div>
+				
+				
+					<div id="fileInformation">
+						<p id="filename"></p>
+						<p id="filesize"></p>
+						<p id="filetype"></p>
+						<p id="filedimension"></p>
+					</div>
+					<div id="error">You should select valid image files only!</div>
+					<div id="error2">An error occurred while uploading the file</div>
+					<div id="abort">The upload has been canceled by the user or the browser dropped the connection</div>
+					<div id="warnsize">Your file is very big. We can't accept it. Please select more small file</div>
+					
+					<div id="progress_info">
+						<div id="filesuccess"></div>
+					</div>
+				</form>
+				<!--preview the image-->
+				<img id="imgPreview" />
+			</div>
+		</section>
+	</body>
+</html>
