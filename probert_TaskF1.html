@@ -22,7 +22,7 @@
 			<!--upload the form here-->
 			<div id="formContainer">
 				<form id="uploadForm" class="floatLeft" method="POST" enctype="multipart/form-data">
-					<p>Upload and view your stinkin photos!</p>
+					<p>Upload and view your photos!</p>
 						<p>Please select a photo and click the Upload button.</p>
 					<div>
 					    <div><label for="img_file">Please select image file</label></div>
@@ -37,19 +37,9 @@
 						<p id="filetype"></p>
 						<p id="filedimension"></p>
 					</div>
-					<div id="error">You should select valid image files only!</div>
-					<div id="warnsize">Your file is very big. We can't accept it. Please select more small file</div>
-					<div id="progress_info">
-37	                        <div id="progress"></div>
-38	                        <div id="progress_percent">&nbsp;</div>
-39	                        <div class="clear_both"></div>
-40	                        <div>
-41	                            <div id="speed">&nbsp;</div>
-42	                            <div id="remaining">&nbsp;</div>
-43	                            <div id="b_transfered">&nbsp;</div>
-44	                            <div class="clear_both"></div>
-45	                        </div>
-					
+					<div id="error">Invalid file type!</div>
+					<div id="warnsize">File size is too large.</div>
+					<div id="progress_info">					
 						<div id="filesuccess"></div>
 					</div>
 				</form>
