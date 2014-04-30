@@ -9,9 +9,4 @@ $sFileName = $_FILES['image_file']['name'];
 $sFileType = $_FILES['image_file']['type'];
 $sFileSize = bytesToSize1024($_FILES['image_file']['size'], 1);
 
-echo <<<EOF
-<p>Your file: {$sFileName} has been successfully uploaded.</p>
-<p>Type: {$sFileType}</p>
-<p>Size: {$sFileSize}</p>
-EOF;
 ?>
