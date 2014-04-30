@@ -102,17 +102,18 @@ input.fileField {
 	overflow:hidden;
 	display:none;
 }
-p#filename,
-p#filesize,
-p#filetype,
-p#filedimension {
+#filename,
+#filesize,
+#filetype,
+#filedimension {
 	color:#ccc;
 	margin:0;
 	font-size:0.9em;
 }
-p#filename {
+#filename {
 	margin-top:10px;
 }
-p#error {
+#error {
 	font-color:#f10;
+	display:none;
 }
