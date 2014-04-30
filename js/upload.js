@@ -31,12 +31,6 @@ function filepicked() {
 	document.getElementById('error').style.display = 'none';
 
 	var oFile = document.getElementById('img_file').files[0];
-
-	if (oFile.size > iMaxFilesize) {
-		document.getElementById('warnsize').style.display = 'block';
-		return;
-	}
-
 	var oImage = document.getElementById('preview');
 
 		// prepare HTML5 FileReader
@@ -142,6 +136,6 @@ function uploadFinish(e) { // upload successfully finished
 }
 	 
 function uploadError(e) { // upload error
-	document.getElementById('error2').style.display = 'block';
+	document.getElementById('error').style.display = 'block';
 	clearInterval(oTimer);
 } 
