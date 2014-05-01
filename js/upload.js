@@ -23,33 +23,23 @@ function bytesToSize(bytes) {
 };
  
 function filepicked() {
-	
-	// hide different warnings
-    document.getElementById('error').style.display = 'none';
-
-    // get selected file element
     var oFile = document.getElementById('img_file').files[0];
 
-    // filter for image files
     var rFilter = /^(image\/bmp|image\/gif|image\/jpeg|image\/jpg|image\/png|image\/tiff)$/i;
     if (! rFilter.test(oFile.type)) {
         document.getElementById('error').style.display = 'block';
         return;
     }
 
-    // get preview element
     var oImage = document.getElementById('imgPreview');
 
-    // prepare HTML5 FileReader
     var oReader = new FileReader();
         oReader.onload = function(e){
 
-        // e.target.result contains the DataURL which we will use as a source of the image
         oImage.src = e.target.result;
 
         oImage.onload = function () { // binding onload event
 
-            // we are going to display some custom image information here
             sResultFileSize = bytesToSize(oFile.size);
             document.getElementById('fileinfo').style.display = 'block';
             document.getElementById('filename').innerHTML = 'Name: ' + oFile.name;
@@ -65,34 +55,21 @@ function filepicked() {
 }
 
 function startUploading() {
-    // cleanup all temp states
     iPreviousBytesLoaded = 0;
     document.getElementById('error').style.display = 'none';
 
     var vFD = new FormData(document.getElementById('uploadForm')); 
 
-    // create XMLHttpRequest object, adding few event listeners, and POSTing our data
     var oXHR = new XMLHttpRequest();
     oXHR.addEventListener('load', uploadFinish, false);
     oXHR.addEventListener('error', uploadError, false);
     oXHR.open('POST', 'upload.php');
     oXHR.send(vFD);
 
-    // set inner timer
     oTimer = setInterval(doInnerUpdates, 300);
 }
 	 
-function uploadFinish(e) { // upload successful
-	var oUploadResponse = document.getElementById('filesuccess');
-	oUploadResponse.innerHTML = e.target.responseText;
-	oUploadResponse.style.display = 'block';
-	 
+function uploadFinish(e) {
 	document.getElementById('filesize').innerHTML = sResultFileSize;
-
-	clearInterval(oTimer);
-}
-	 
-function uploadError(e) { // upload error
-	document.getElementById('error').style.display = 'block';
 	clearInterval(oTimer);
 } 
