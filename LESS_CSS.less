@@ -1,0 +1,80 @@
+﻿//Jennifer Probert Coding Assessment Task F2
+//variables
+@display: block;
+@pointer: pointer;
+@font-size: 12px;
+@images: "//s.wlfcdn.com/giftcards/cms_proper/CMS-376/v1";
+@border-width: 1px;
+@base: 100px;
+@mbase: 3px;
+@noPad: 0;
+@white: #fff;
+@red: #f10;
+@gray-lt: #d3f0fe;
+@gray-md: #9eb5c4;
+@blue-lt: #88cff0;
+@blue-md: #3ba4d5;
+@blue-dk: #2c8bb7;
+
+.height-default(@hgt: 25px) {
+    height: @hgt;
+}
+.width-default(@wdt: 152px;) {
+	width: @wdt;
+}
+
+
+
+.current {
+	display: @display;
+	color: @red;
+	background: url("@images/dashboard-sprite.png");
+	background-position: (@base - 485) 0;
+	width: @base + 66 !important;
+	height: @base - 62 !important;
+	padding: @noPad !important;
+	margin-top: @mbase * 6 !important;
+	margin-right: @mbase !important;
+	margin-bottom: @mbase - 3 !important;
+	margin-left: @mbase - 3 !important;
+	cursor: @pointer;
+	ul {
+		margin-top: @mbase - 3;
+		margin-right: @mbase - 3;
+		margin-bottom: @mbase - 3;
+		margin-left: @mbase * 3;
+		background-color: @blue-dk;
+		padding: @noPad;
+		border:@border-width solid @gray-md;
+		width: @base + 52;
+		background-color: @blue-dk;
+		li {
+			padding: @noPad;
+			margin:@mbase - 3;
+			font-size: @font-size - 1;
+			.height-default;
+			.width-default;
+			border-bottom: @border-width solid @blue-lt;
+			background-color: @blue-dk;
+			a {
+				padding: @noPad;
+				margin: @mbase - 3;
+				display: @display;
+				.height-default;
+				.width-default;
+				line-height: @base - 75;
+				color: @white;
+				text-decoration:none;
+				text-indent: @base - 87;
+				&:hover {
+					color: @gray-lt;
+					display: @display;
+					.width-default;
+					background-color: @blue-md;
+					padding: @noPad;
+					margin: @mbase - 3;
+				}
+			}
+		}
+	}
+}
