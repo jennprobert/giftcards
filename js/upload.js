@@ -23,33 +23,45 @@ function bytesToSize(bytes) {
 };
  
 function filepicked() {
-	document.getElementById('error').style.display = 'none';
-
-    var oFile = document.getElementById('img_file').files[0];
 	
-	var rFilter = /^(image\/bmp|image\/gif|image\/jpeg|image\/png|image\/tiff)$/i;
-	if (! rFilter.test(oFile.type)) {
-		document.getElementById('error').style.display = 'block';
-		return;
-	}
+	// hide different warnings
+    document.getElementById('error').style.display = 'none';
 
-	var oImage = document.getElementById('imgPreview');
+    // get selected file element
+    var oFile = document.getElementById('img_file').files[0];
 
-	//HTML5 FileReader
-	var oReader = new FileReader();
-	oReader.onload = function(e){
-		oImage.src = e.target.result;
+    // filter for image files
+    var rFilter = /^(image\/bmp|image\/gif|image\/jpeg|image\/jpg|image\/png|image\/tiff)$/i;
+    if (! rFilter.test(oFile.type)) {
+        document.getElementById('error').style.display = 'block';
+        return;
+    }
 
-		oImage.onload = function () { // binding onload event
-			sResultFileSize = bytesToSize(oFile.size);
-			document.getElementById('fileInformation').style.display = 'block';
-			document.getElementById('filename').innerHTML = 'Name: ' + oFile.name;
-			document.getElementById('filesize').innerHTML = 'Size: ' + sResultFileSize;
-			document.getElementById('filetype').innerHTML = 'Type: ' + oFile.type;
-			document.getElementById('filedimension').innerHTML = 'Dimension: ' + oImage.naturalWidth + ' x ' + oImage.naturalHeight;
-		};
-	};
-	oReader.readAsDataURL(oFile);
+    // get preview element
+    var oImage = document.getElementById('imgPreview');
+
+    // prepare HTML5 FileReader
+    var oReader = new FileReader();
+        oReader.onload = function(e){
+
+        // e.target.result contains the DataURL which we will use as a source of the image
+        oImage.src = e.target.result;
+
+        oImage.onload = function () { // binding onload event
+
+            // we are going to display some custom image information here
+            sResultFileSize = bytesToSize(oFile.size);
+            document.getElementById('fileinfo').style.display = 'block';
+            document.getElementById('filename').innerHTML = 'Name: ' + oFile.name;
+            document.getElementById('filesize').innerHTML = 'Size: ' + sResultFileSize;
+            document.getElementById('filetype').innerHTML = 'Type: ' + oFile.type;
+            document.getElementById('filedimension').innerHTML = 'Dimension: ' + oImage.naturalWidth + ' x ' + oImage.naturalHeight;
+        };
+    };
+
+    // read selected file as DataURL
+    oReader.readAsDataURL(oFile);
+	
 }
 
 function startUploading() {
