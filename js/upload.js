@@ -24,6 +24,13 @@ function bytesToSize(bytes) {
  
 function filepicked() {
     var oFile = document.getElementById('img_file').files[0];
+	
+	var rFilter = /^(image\/bmp|image\/gif|image\/jpeg|image\/png|image\/tiff)$/i;
+	if (! rFilter.test(oFile.type)) {
+		document.getElementById('error').style.display = 'block';
+		return;
+	}
+
 	var oImage = document.getElementById('imgPreview');
 
 	//HTML5 FileReader
