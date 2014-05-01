@@ -23,6 +23,8 @@ function bytesToSize(bytes) {
 };
  
 function filepicked() {
+	document.getElementById('error').style.display = 'none';
+
     var oFile = document.getElementById('img_file').files[0];
 	
 	var rFilter = /^(image\/bmp|image\/gif|image\/jpeg|image\/png|image\/tiff)$/i;
