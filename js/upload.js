@@ -56,7 +56,6 @@ function startUploading() {
 
     var oXHR = new XMLHttpRequest();
     oXHR.addEventListener('load', uploadFinish, false);
-    oXHR.addEventListener('error', uploadError, false);
     oXHR.open('POST', 'upload.php');
     oXHR.send(vFD);
 }
