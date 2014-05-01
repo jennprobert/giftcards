@@ -37,7 +37,7 @@ function filepicked() {
 			oImage.onload = function () { // binding onload event
 
             sResultFileSize = bytesToSize(oFile.size);
-            document.getElementById('fileinfo').style.display = 'block';
+            document.getElementById('fileInformation').style.display = 'block';
             document.getElementById('filename').innerHTML = 'Name: ' + oFile.name;
             document.getElementById('filesize').innerHTML = 'Size: ' + sResultFileSize;
             document.getElementById('filetype').innerHTML = 'Type: ' + oFile.type;
