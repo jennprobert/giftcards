@@ -65,14 +65,21 @@ function filepicked() {
 }
 
 function startUploading() {
-	iPreviousBytesLoaded = 0;
-	document.getElementById('error').style.display = 'none';
-	
-	var vFD = new FormData(document.getElementById('uploadForm'));
-	var oXHR = new XMLHttpRequest();
-	oXHR.addEventListener('error', uploadError, false);
-	oXHR.open('POST', 'upload.php');
-	oXHR.send(vFD);
+    // cleanup all temp states
+    iPreviousBytesLoaded = 0;
+    document.getElementById('error').style.display = 'none';
+
+    var vFD = new FormData(document.getElementById('uploadForm')); 
+
+    // create XMLHttpRequest object, adding few event listeners, and POSTing our data
+    var oXHR = new XMLHttpRequest();
+    oXHR.addEventListener('load', uploadFinish, false);
+    oXHR.addEventListener('error', uploadError, false);
+    oXHR.open('POST', 'upload.php');
+    oXHR.send(vFD);
+
+    // set inner timer
+    oTimer = setInterval(doInnerUpdates, 300);
 }
 	 
 function uploadFinish(e) { // upload successful
